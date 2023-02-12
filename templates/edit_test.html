@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./static/list_of_tests.css">
+  <link rel="shortcut icon" href="./static/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+    integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+    integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+    crossorigin="anonymous"></script>
+  <title>Edit Test</title>
+</head>
+
+<body>
+  <div class="card text-center">
+    <div class="card-header">
+      Edit Test Details
+    </div>
+    <div class="card-body">
+      {% if edit_test_visible["test_type"] == "visible" %}
+      <form method="post" id="edit_test_visible" action="/update_test">
+        <div class="row">
+          <div class="form-group">
+            <label class="col-form-label">Test Name:</label>
+            <input type="text" value="{{edit_test_visible["test_name"]}}" class="form-control" name="testname"
+              required>
+          </div>
+          <div class="form-group" style="display:none">
+            <label class="col-form-label">Test Name Old:</label>
+            <input type="text" value="{{edit_test_visible["test_name"]}}" class="form-control" name="testnameold" 
+              required>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Test Type:</label>
+            <input type="text" value="visible" class="form-control" name="testtype" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label class="col-form-label">H weight:</label>
+              <input type="number" value="{{edit_test_visible["h"]}}" step="0.00000001" class="form-control" name="H">
+            </div>
+            <div class="form-group">
+              <label class="col-form-label">S weight:</label>
+              <input type="number" value="{{edit_test_visible["s"]}}" step="0.00000001" class="form-control" name="S">
+            </div>
+            <div class="form-group">
+              <label class="col-form-label">L weight:</label>
+              <input type="number" value="{{edit_test_visible["l"]}}" step="0.00000001" class="form-control" name="L">
+            </div>
+            <div class="form-group">
+              <label class="col-form-label">V weight:</label>
+              <input type="number" value="{{edit_test_visible["v"]}}" step="0.00000001" class="form-control" name="V">
+            </div>
+            <div class="form-group">
+              <label class="col-form-label">Intercept</label>
+              <input type="number" value="{{edit_test_visible["intercept"]}}" step="0.000000000000001"
+                class="form-control" name="intercept">
+            </div>
+
+          </div>
+
+
+          <div class="col-6">
+            <div class="form-group">
+              <label class="col-form-label">Temperature</label>
+              <input type="number" value="{{edit_test_visible["temperature"]}}" class="form-control"
+                name="test_temperature" required>
+            </div>
+            <div class="form-group">
+              <label class="col-form-label">Low Flag Limit:</label>
+              <input type="number" value="{{edit_test_visible["flag_low"]}}" class="form-control"
+                name="test_level_lower" required>
+            </div>
+            <div class="form-group">
+              <label class="col-form-label">High Flag Limit:</label>
+              <input type="number" value="{{edit_test_visible["flag_high"]}}" class="form-control"
+                name="test_level_higher">
+            </div>
+            <div class="form-group">
+              <label class="col-form-label">unit</label>
+              <input type="text" value="{{edit_test_uv["test_unit"]}}" class="form-control" name="test_unit">
+            </div>
+
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="modal-footer">
+            <button type="submit" value="submit" class="btn btn-primary" form="edit_test_visible">update test details
+              and save</button>
+          </div>
+        </div>
+
+      </form>
+      {% endif %}
+
+      {% if edit_test_uv["test_type"] == "uv" %}
+      <form method="post" id="edit_test_uv" action="/update_test">
+        <div class="row">
+          <div class="form-group">
+            <label class="col-form-label">Test Name:</label>
+            <input type="text" class="form-control" value="{{edit_test_uv["test_name"]}}" name="testname" required>
+          </div>
+          <div class="form-group" style="display:none">
+            <label class="col-form-label">Test Name:</label>
+            <input type="text" class="form-control" value="{{edit_test_uv["test_name"]}}" name="testnameold" required>
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label">Test type:</label>
+            <input type="text" value="uv" class="form-control" name="testtype" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label class="col-form-label">Temperature</label>
+              <input type="number" value="{{edit_test_uv["temperature"]}}" class="form-control" name="test_temperature"
+                required>
+            </div>
+          </div>
+
+
+          <div class="col-6">
+            <div class="form-group">
+              <label class="col-form-label">Low Flag Limit:</label>
+              <input type="number" value="{{edit_test_uv["flag_low"]}}" class="form-control" name="test_level_lower"
+                required>
+            </div>
+            <div class="form-group">
+              <label class="col-form-label">High Flag Limit:</label>
+              <input type="number" value="{{edit_test_uv["flag_high"]}}" class="form-control" name="test_level_higher">
+            </div>
+            <div class="form-group">
+              <label class="col-form-label">unit</label>
+              <input type="text" value="{{edit_test_uv["test_unit"]}}" class="form-control" name="test_unit">
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="modal-footer">
+            <button type="submit" value="submit" class="btn btn-primary" form="edit_test_uv">update test details and
+              save</button>
+          </div>
+        </div>
+
+      </form>
+      {% endif %}
+
+
+    </div>
+
+  </div>
+</body>
+
+</html>
