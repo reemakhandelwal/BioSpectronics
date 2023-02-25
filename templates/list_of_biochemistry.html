@@ -42,7 +42,9 @@
     </div>
 
 
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-secondary" type="submit">Search</button> -->
+    <input class="control" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-secondary" type="submit">Search</button>
 <!--   
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -161,6 +163,11 @@
 
       <button type="button" class="btn btn-info submit_btn " data-toggle="modal" data-target="#delete_test_modal">Delete
         test</button>
+        <button type="button" class="btn btn-info submit_btn " data-toggle="modal" data-target="#stdval_modal">Measure
+        std. value</button>
+
+      <button type="button" class="btn btn-info submit_btn " data-toggle="modal" data-target="#clean_modal">Clean
+      </button>
     </div>
 
     <!-- <button type="button" class="btn btn-info submit_btn"  value="Submit" form="test_list">Delete test</button>
@@ -252,9 +259,6 @@
       </div>
     </div>
 
-
-
-
     <!-- uv spectrum new test modal form -->
     <div class="modal fade" id="uv_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
@@ -316,11 +320,51 @@
         </div>
       </div>
     </div>
+    <!--measure std val modal form-->
+    <div class="modal fade" id="stdval_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(21, 133, 6);">Enter Std Value</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" id="add_test_uv" action="/add_new_test_uv">
+            <div class="row">
+              <div class="form-group">
+                <label class="col-form-label">Test Name:</label>
+                <input type="text" class="form-control" name="testname" required>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Test type:</label>
+                <input type="text" value="uv" class="form-control" name="testtype" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+              
+                <div class="form-group">
+                  <label class="col-form-label">Enter Std Val</label>
+                  <input type="number" value="37" class="form-control" name="test_temperature" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" value="submit" class="btn btn-primary" form="add_test_uv">Submit</button>
+              </div>
+            </div>
 
+          </form>
+        </div>
 
-
-
-
+      </div>
+    </div>
+  </div>
     <!-- choose uv or visible modal form -->
     <div class="modal fade" id="choose_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
@@ -479,8 +523,33 @@
       </div>
     </div>
 
+<!--stdval modal-->
 
 
+<!--clean modal-->
+<div class="modal fade" id="clean_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(21, 133, 6);">Cleaning in Progress...</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form method="post" id="add_test" action="/add_new_test">
+
+
+
+
+
+      </form>
+    </div>
+
+  </div>
+</div>
+</div>
 
 </body>
 
